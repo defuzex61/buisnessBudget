@@ -17,15 +17,17 @@ namespace BudgetTracker.View
     {
         private List<string> _budgetTypes = new List<string>();
         private ObservableCollection<BudgetRecord> _budgetRecords = new ObservableCollection<BudgetRecord>();//это как лист ток на приколе, зачем? потому что могу)
-        private DateTime currentDate = new DateTime();
+
         public MainWindow()
         {
+
             InitializeComponent();
             startWindow();
 
         }
         private void startWindow()
         {
+            File.WriteAllText("budgetRecords.json", "[{'Name':'ОлеG','Type':'Тюбик','Amount':123.0,'RecordTime':'19.09.2023'}]");
             _budgetRecords = Serialization.Deserialize<ObservableCollection<BudgetRecord>>();          
             dgRecords.ItemsSource = _budgetRecords;
             for (int i = 0; i < _budgetRecords.Count; i++) 
